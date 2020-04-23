@@ -71,7 +71,9 @@
             </div>
             <script>
               const urlParams = new URLSearchParams(window.location.search);
-              const phone = urlParams.get("phone");
+              document.querySelector(".hidden-tel").textContent = urlParams.get(
+                "phone"
+              ) + "的动态行程卡";
               document.querySelector(".update").textContent =
                 "更新于：" + moment().format("YYYY.MM.DD HH:mm:ss");
               document.querySelector(".addr").textContent = urlParams.get(

